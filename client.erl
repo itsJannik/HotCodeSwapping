@@ -1,13 +1,18 @@
 -module(client).
+-export([handle/1, hello/0]).
 
 %   1st 
-%   start() -> 
+%   start() -> executor:rpc(client, "Hello").
 
 %   1st 
-%   handle(Val) -> 
+%   handle(Val) -> io:format(Val).
 
 %   2nd
-%   hello() ->
+hello() -> executor:rpc(client, hello).
 
 %   2nd
-%   handle(Request) ->
+handle(Request) ->
+    if 
+        Request =:= hello -> {"Hello"};
+        true -> {"Bye"}
+    end.
